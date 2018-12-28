@@ -1,0 +1,44 @@
+
+#include <iostream>
+#include <cmath> //Including for "pow" function
+
+using namespace std;
+
+namespace convto { //Defining namespace convTo
+
+template <class arry> // Creating a new template class for an array(int,char,double etc.)
+int arrSize(arry arr[]) // arrSize function calculates array length.
+{
+	int i = 0;
+	
+	while (arr[i] != NULL) // When arr[i] == NULL, cut out while cycle and print i
+	{
+		i++;
+	}
+	
+	return i;
+}
+
+template <class chStr> //Creating a new template class for an array(int,char,double etc.)b
+unsigned int toInt(chStr str[])
+{
+	int sizeofStr = arrSize(str); // sizeofStr keeps str length.
+	int exStr[sizeofStr]; // exStr will keep the integer
+	for(int i = 0; i < sizeofStr ; i++) 
+	{
+		exStr[i] = (int)str[i]-48; //Integer ascii beetwen of (48,57)
+	}
+	
+	int num = 0;
+	int size,bas;
+	size = arrSize(exStr);
+	for ( int i = 0 ; i < sizeofStr; i++)
+	{
+		bas = exStr[i]*pow(10,(sizeofStr-1)-i); //i*10^stepsize = step number
+		num += bas;
+	}
+	
+	return num;
+}
+
+}
